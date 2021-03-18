@@ -1,0 +1,134 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+    id("kotlin-parcelize")
+}
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.3"
+
+    defaultConfig {
+        applicationId "it.massimilianomassaro.weatherforecast"
+        minSdkVersion 21
+        targetSdkVersion 30
+        versionCode 12
+        versionName "1.0"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    flavorDimensions "app"
+    productFlavors {
+        dev {
+            dimension "app"
+            versionNameSuffix = '.dev'
+
+            buildConfigField 'String', 'REMOTE_BASE_URL', '"https://api.openweathermap.org/data/2.5/"'
+            buildConfigField 'String', 'APP_ID', '"8bed11725fc74bad1d56bcf5e98862c0"'
+            buildConfigField 'String', 'IMG_BASE_URL', '"https://openweathermap.org/img/wn/"'
+        }
+    }
+    buildFeatures {
+        viewBinding true
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+        coreLibraryDesugaringEnabled true
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+ext {
+    core = "1.3.2"
+    appcompat = "1.2.0"
+    material = "1.3.0"
+    constraintlayout = "2.0.4"
+    lifecycle = "2.2.0"
+    navigator = "2.3.3"
+    hilt = "2.32-alpha"
+    hiltCompiler = "1.0.0-alpha03"
+    timber = "4.7.1"
+    arrow = "0.8.2"
+    junit = "4.13.2"
+    mockk = "1.9.3"
+    coreTesting = "2.1.0"
+    coroutines = "1.4.0"
+    androidxFragment = "1.3.0"
+    androidxActivity = "1.2.0"
+    androidxLifecycle = "2.3.0"
+    androidxLegacy = "1.0.0"
+    androidxWork = "2.5.0"
+    okHttp = "4.9.0"
+    retrofit = "2.9.0"
+    rxAdapter = "2.4.0"
+    picasso = "2.71828"
+}
+
+dependencies {
+    // Core libraries
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation "androidx.core:core-ktx:$core"
+    implementation "androidx.appcompat:appcompat:$appcompat"
+    implementation "com.google.android.material:material:$material"
+    implementation("org.jetbrains:annotations:19.0.0")
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle"
+    implementation "androidx.constraintlayout:constraintlayout:$constraintlayout"
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle"
+    implementation "androidx.navigation:navigation-fragment-ktx:$navigator"
+    implementation "androidx.navigation:navigation-ui-ktx:$navigator"
+    implementation "androidx.navigation:navigation-fragment-ktx:$navigator"
+    implementation "androidx.navigation:navigation-ui-ktx:$navigator"
+    implementation "androidx.fragment:fragment-ktx:$androidxFragment"
+    implementation "androidx.activity:activity-ktx:$androidxActivity"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$androidxLifecycle"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$androidxLifecycle"
+    implementation "androidx.legacy:legacy-support-v4:$androidxLegacy"
+    implementation "androidx.work:work-runtime:$androidxWork"
+    implementation "io.arrow-kt:arrow-core:$arrow"
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
+
+
+
+    //Retrofit
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines"
+    implementation "com.squareup.okhttp3:okhttp:$okHttp"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okHttp"
+    implementation "com.squareup.retrofit2:retrofit:$retrofit"
+    implementation "com.squareup.retrofit2:converter-moshi:$retrofit"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$rxAdapter"
+
+    // Dagger/Hilt (DI) libraries
+    implementation "com.google.dagger:hilt-android:$hilt"
+    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$hiltCompiler"
+    implementation "androidx.hilt:hilt-common:$hiltCompiler"
+    implementation "androidx.hilt:hilt-navigation-fragment:$hiltCompiler"
+    kapt "com.google.dagger:hilt-android-compiler:$hilt"
+    kapt "androidx.hilt:hilt-compiler:$hiltCompiler"
+
+    // Timber for logging
+    implementation "com.jakewharton.timber:timber:$timber"
+
+    // Picasso image loading
+    implementation "com.squareup.picasso:picasso:$picasso"
+
+    // Unit tests libraries
+    testImplementation "junit:junit:$junit"
+    testImplementation "io.mockk:mockk:$mockk"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines"
+    testImplementation "androidx.arch.core:core-testing:$coreTesting"
+}
+
+kapt {
+    correctErrorTypes = true
+}

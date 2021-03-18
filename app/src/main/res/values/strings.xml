@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Weather Forecast</string>
+    <string name="ok">OK</string>
+    <string name="error">Error</string>
+    <string name="error_message_generic">A generic error occurred</string>
+    <string name="network_error">Network error</string>
+    <string name="search_by_city_name">Search by city name</string>
+    <string name="invalid_field">Field is invalid</string>
+    <string name="city_not_found">City not found</string>
+    <string name="date">Date</string>
+    <string name="weather_image">Weather image icon</string>
+    <string name="hour">Hour</string>
+    <string name="description">Description</string>
+    <string name="temperature">Temperature</string>
+</resources>
